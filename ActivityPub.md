@@ -47,10 +47,103 @@ world to inbox and from outbox to rest of world](./img/tutorial-2.png)
 
 흠, 그러니까 설명하자면...
 
-- 서비스는 메세지를 보내기 위해 수신자의 인박스에 POST 할 수 있습니다. (서버-서버 간)
+- 나는 메세지를 보내기 위해 수신자의 인박스에 POST 할 수 있습니다. (서버-서버 간)
 - 나는 내 인박스로부터 최근 메세지를 가져오기 위해 GET 할 수 있습니다 (클라이언트-서버 간)
 - 나는 누군가에게 메세지를 보내기 위해 내 아웃박스에 POST를 할 수 있습니다. (클라이언트-서버 간)
-- 서비스는 내가 쓴 글을 읽기 위해 내 아웃박스에 GET을 할 수 있습니다. (클라이언트-서버 / 서버-서버 간)
+- 나는 누군가가 쓴 글을 읽기 위해 그 사람의 아웃박스에 GET을 할 수 있습니다. (클라이언트-서버 / 서버-서버 간)
+
+당연하게도, 누군가가 쓴 글을 읽기 위해 일일히 그 사람의 아웃박스에 GET을 한다면, 이건 별로 효과적인 프로토콜이라고 부를 수 없겠죠! 당연하게도, 연합에서는 종종 액터에서 다른 서버의 액터가 가지고 있는 인박스로 메세지를 보내는 일이 자주 있습니다.
+
+예제를 한번 들어보죠! 우리의 친구 알리사가 '벤'에게 연락을 하고 싶어하네요. 알리사는 벤에게 빌려줬던 책을 돌려받고 싶어합니다. 그녀의 액티비티스트림을 이용한 메세지를 구성하고 있는 요소들을 살펴보도록 하죠:
+
+```json
+{"@context": "https://www.w3.org/ns/activitystreams",
+ "type": "Note",
+ "to": ["https://chatty.example/ben/"],
+ "attributedTo": "https://social.example/alyssa/",
+ "content": "Say, did you finish reading that book I lent you?"}
+```
+
+이건 벤에게로 가야 할 쪽지입니다. 알리사는 이것을 그녀의 아웃박스로 POST 요청을 날립니다.
+
+![Actor posting message to outbox](./img/tutorial-3.png)
+
+Since this is a non-activity object, the server recognizes that this is an object being newly created, and does the courtesy of wrapping it in a Create activity. (Activities sent around in ActivityPub generally follow the pattern of some activity by some actor being taken on some object. In this case the activity is a Create of a Note object, posted by a Person).
+
+```json
+{"@context": "https://www.w3.org/ns/activitystreams",
+ "type": "Create",
+ "id": "https://social.example/alyssa/posts/a29a6843-9feb-4c74-a7f7-081b9c9201d3",
+ "to": ["https://chatty.example/ben/"],
+ "actor": "https://social.example/alyssa/",
+ "object": {"type": "Note",
+            "id": "https://social.example/alyssa/posts/49e2d03d-b53a-4c4c-a95c-94a6abf45a19",
+            "attributedTo": "https://social.example/alyssa/",
+            "to": ["https://chatty.example/ben/"],
+            "content": "Say, did you finish reading that book I lent you?"}}
+```
+
+Alyssa's server looks up Ben's ActivityStreams actor object, finds his inbox endpoint, and POSTs her object to his inbox.
+
+​         ![Server posting to remote actor's inbox](./img/tutorial-4.png)       
+
+Technically these are two separate steps... one is client to server communication, and one is server to server communication (federation). But, since we're using them both in this example, we can abstractly         think of this as being a streamlined submission from outbox to inbox:
+
+​         ![Note flowing from one actor's outbox to other actor's inbox](./img/tutorial-5.png)       
+
+Cool! A while later, Alyssa checks what new messages she's gotten. Her phone polls her inbox via GET, and amongst a bunch of cat videos posted by friends and photos of her nephew posted by her sister, she sees the following:
+
+```json
+{"@context": "https://www.w3.org/ns/activitystreams",
+ "type": "Create",
+ "id": "https://chatty.example/ben/p/51086",
+ "to": ["https://social.example/alyssa/"],
+ "actor": "https://chatty.example/ben/",
+ "object": {"type": "Note",
+            "id": "https://chatty.example/ben/p/51085",
+            "attributedTo": "https://chatty.example/ben/",
+            "to": ["https://social.example/alyssa/"],
+            "inReplyTo": "https://social.example/alyssa/posts/49e2d03d-b53a-4c4c-a95c-94a6abf45a19",
+            "content": "<p>Argh, yeah, sorry, I'll get it back to you tomorrow.</p>
+                        <p>I was reviewing the section on register machines,
+                           since it's been a while since I wrote one.</p>"}}
+```
+
+Alyssa is relieved, and likes Ben's post:
+
+```json
+{"@context": "https://www.w3.org/ns/activitystreams",
+ "type": "Like",
+ "id": "https://social.example/alyssa/posts/5312e10e-5110-42e5-a09b-934882b3ecec",
+ "to": ["https://chatty.example/ben/"],
+ "actor": "https://social.example/alyssa/",
+ "object": "https://chatty.example/ben/p/51086"}
+```
+
+She POSTs this message to her outbox. (Since it's an activity, her server knows it doesn't need to wrap it in         a Create object). Feeling happy about things, she decides to post a public message to her followers. Soon the following message is blasted to all the members of her followers collection, and since it has the special Public group addressed, is generally readable by anyone.
+
+```json
+{"@context": "https://www.w3.org/ns/activitystreams",
+ "type": "Create",
+ "id": "https://social.example/alyssa/posts/9282e9cc-14d0-42b3-a758-d6aeca6c876b",
+ "to": ["https://social.example/alyssa/followers/",
+        "https://www.w3.org/ns/activitystreams#Public"],
+ "actor": "https://social.example/alyssa/",
+ "object": {"type": "Note",
+            "id": "https://social.example/alyssa/posts/d18c55d4-8a63-4181-9745-4e6cf7938fa1",
+            "attributedTo": "https://social.example/alyssa/",
+            "to": ["https://social.example/alyssa/followers/",
+                   "https://www.w3.org/ns/activitystreams#Public"],
+            "content": "Lending books to friends is nice.  Getting them back is even nicer! :)"}}
+```
+
+#### 1.1 Social Web Working Group
+
+[ActivityPub](https://www.w3.org/TR/activitypub/#Overview) is one of several related specifications being produced by the Social Web Working Group. Implementers interested in alternative approaches and complementary protocols should review [[Micropub](https://www.w3.org/TR/activitypub/#bib-Micropub)] and the overview document [[Social-Web-Protocols](https://www.w3.org/TR/activitypub/#bib-Social-Web-Protocols)].
 
 
+
+### 2. Conformance
+
+*todo*
 
