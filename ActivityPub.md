@@ -2,7 +2,7 @@
 
 액티비티펍(ActivityPub) 프로토콜은 [ActivityStreams 2.0](<https://www.w3.org/TR/activitypub/#bib-ActivityStreams>)의 데이터 포맷을 이용한 탈 중앙화된 소셜 네트워킹 프로토콜 입니다. 컨텐츠에 대한 CRUD를 지원하는 클라이언트-서버 API를 제공하며, ‘연합’으로 이루어진 서버-서버 간의 알림과 컨텐츠 전달을 위한 API도 제공합니다.
 
-### 1. Overview
+### 1. 개론 ~~Overview~~
 
 액티비티펍은 2개의 레이어로 구성되어 있습니다:
 
@@ -149,40 +149,51 @@ world to inbox and from outbox to rest of world](./img/tutorial-2.png)
             "content": "Lending books to friends is nice.  Getting them back is even nicer! :)"}}
 ```
 
-#### 1.1 Social Web Working Group
+#### 1.1 소셜 웹 워킹 그룹 ~~Social Web Working Group~~
 
-[ActivityPub](https://www.w3.org/TR/activitypub/#Overview) is one of several related specifications being produced by the Social Web Working Group. Implementers interested in alternative approaches and complementary protocols should review [[Micropub](https://www.w3.org/TR/activitypub/#bib-Micropub)] and the overview document [[Social-Web-Protocols](https://www.w3.org/TR/activitypub/#bib-Social-Web-Protocols)].
+[액티비티펍](https://www.w3.org/TR/activitypub/#Overview)은 소셜 웹 워킹 그룹에서 만든 여러 규격 중 하나입니다. 다른 접근 방식이나 보충 프로토콜에 관심이 있는 도입자들은 [[마이크로펍](https://www.w3.org/TR/activitypub/#bib-Micropub)이나 [[소셜-웹-프로토콜](https://www.w3.org/TR/activitypub/#bib-Social-Web-Protocols) 문서를 검토하십시오.
+
+~~[ActivityPub](https://www.w3.org/TR/activitypub/#Overview) is one of several related specifcations being produced by the Social Web Working Group. Implementers interested in alternative approaches and complementary protocols should review [[Micropub](https://www.w3.org/TR/activitypub/#bib-Micropub)] and the overview document [[Social-Web-Protocols](https://www.w3.org/TR/activitypub/#bib-Social-Web-Protocols)].~~
 
 
 
-### 2. Conformance
+### 2. 준수  ~~Conformance~~
 
-As well as sections marked as non-normative, all authoring guidelines, diagrams, examples,   and notes in this specification are non-normative. Everything else in this specification is   normative. 
+비규범적인 것으로 표시된 섹션들과 마찬가지로, 본 규격의 모든 작성된 가이드라인, 다이어그램, 예시, 노트들은 비규범적입니다. 규격 안의 모든 나머지 것들은 규범적입니다. (준수되어야 합니다)
 
-The key words  *MAY*, *MUST*, *MUST NOT*, *SHOULD*, and *SHOULD NOT* are    to be interpreted as described in [[RFC2119](https://www.w3.org/TR/activitypub/#bib-RFC2119)]. 
+~~As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is   normative.~~
 
-#### 2.1 Specification Profiles
+`~수 있다`, `~해야 한다`, `~해서는 아니 된다`, `~ 권장된다`, `~권장되지 않는다` 의 키워드들의 해석은  [[RFC2119](https://www.w3.org/TR/activitypub/#bib-RFC2119)] 를 따릅니다.  
 
-This specification defines two closely related and interacting protocols:         
+~~The key words  *MAY*, *MUST*, *MUST NOT*, *SHOULD*, and *SHOULD NOT* are    to be interpreted as described in [[RFC2119](https://www.w3.org/TR/activitypub/#bib-RFC2119)].~~
 
-- A client to server protocol, or "Social API"
+#### 2.1 규격 프로파일 ~~Specification Profiles~~
 
-  - This protocol permits a client to act *on behalf* of a user.  For example, this protocol is used by a mobile phone application to interact with a social stream of the user's actor.           
+본 규격은 두 가지 근접한 상호작용 프로토콜을 정의합니다.
 
-- A server to server protocol, or "Federation Protocol"
+~~This specification defines two closely related and interacting protocols:~~
 
-  - This protocol is used to distribute activities between actors on different servers, tying them into the same social graph.
+- 클라이언트 - 서버 프로토콜, 혹은 "소설 API" ~~A client to server protocol, or "Social API"~~
+- 이 프로토콜은 클라이언트가 사용자 _를 대신하여_ 활동하도록 수락합니다. 예를 들어, 이 프로토콜은 모바일 폰 어플리케이션이 사용자의 액터의 소셜 스트림과 상호작용할 수 있도록 사용됩니다. ~~This protocol permits a client to act *on behalf* of a user.  For example, this protocol is used by a mobile phone application to interact with a social stream of the user's actor.~~
+  
+- 서버 - 서버 간 프로토콜, 혹은 "연합 프로토콜" ~~A  server to server protocol, or "Federation Protocol"~~
 
-The ActivityPub specification is designed so that once either of these protocols are implemented, supporting the other is of very little additional effort. However, servers may still implement one without the other. This gives three conformance classes:         
+  - 이 프로토콜은 액티비티를 다른 서버의 액터들 사이에 퍼져나가게 하는 동시에 동일한 소셜 그래프 내에 묶어두는데 쓰입니다. ~~This protocol is used to distribute activities between actors on different servers, tying them into the same social graph.~~
 
-- ActivityPub conformant Client
-- This designation applies to any implementation of the entirety of the client portion of the client to server protocol.
-- ActivityPub conformant Server
-- This designation applies to any implementation of the entirety of the server portion of the client to server protocol.           
-- ActivityPub conformant Federated Server
-- This designation applies to any implementation of the entirety of the federation protocols.           
+이 액티비티펍 규격은 두 규격 중 하나가 도입되면, 나머지 하나를 지원하는 것에 아주 적은 추가적인 노력만이 들도록 설계되었습니다. 그러나 서버는 여전히 나머지 하나 없이 한 가지를 도입해야 합니다. 이는 세 가지 준수 클래스를 제시합니다
 
-It is called out whenever a portion of the specification only applies to implementation of the federation protocol. In addition, whenever requirements are specified, it is called out whether they apply to the client or server (for the client-to-server protocol) or whether referring to a sending or receiving server in the server-to-server protocol.
+~~The ActivityPub specification is designed so that once either of these protocols are implemented, supporting the other is of very little additional effort. However, servers may still implement one without the other. This gives three conformance classes:~~
+
+- 액티비티펍 준수 클라이언트 ~~ActivityPub conformant Client~~
+  - 이 분류는 클라이언트 - 서버 프로토콜의 모든 클라이언트 도입 부분에 적용됩니다. ~~This designation applies to any implementation of the entirety of the client portion of the client to server protocol.~~
+- 액티비티펍 준수 서버 ~~ActivityPub conformant Server~~
+  - 이 분류는 클라이언트 - 서버 프로토콜의 모든 서버 도입 부분에 적용됩니다. ~~This designation applies to any implementation of the entirety of the server portion of the client to server protocol.~~
+- 액티비티펍 준수 연합 서버 ~~ActivityPub conformant Federated Server~~
+  - 이 분류는 모든 연합 서버 도입 부분에 적용됩니다. ~~This designation applies to any implementation of the entirety of the federation protocols.~~
+
+~~연합 프로토콜 도입에만 규격 일부가 적용될 때 콜아웃이 됩니다(?)~~ 또한 필수항목이 특정될 때마다, 필수항목들이 (클라이언트 - 서버 통신에서)클라이언트에 적용되는지 서버에 적용되는지 혹은 서버 간 프로토콜에서 발신 측에 적용이 되는지 혹은 수신 측에 적용이 되는지 여부가 콜아웃 됩니다.
+
+~~It is called out whenever a portion of the specification only applies to implementation of the federation protocol. In addition, whenever requirements are specified, it is called out whether they apply to the client or server (for the client-to-server protocol) or whether referring to a sending or receiving server in the server-to-server protocol.~~
 
 ### 3. Objects
 
