@@ -45,14 +45,30 @@ it should dereference the `id` both to ensure that it exists and is a valid obje
 
 
 
-#### 3.1 Object Identifiers
+#### 3.1 오브젝트 구분자 Object Identifiers
+
+[액티비티스트림]의 모든 오브젝트는 고유의 전역구분자를 가져야 합니다. 액티비티펍은 이 제한의 연장선에 있습니다; 액티비티펍 프로토콜에 의해 배포되는 모든 오브젝트들은, 의도적으로 일시적인 수준(접근되도록 의도되지 않은 단기 활동들로 챗 메세지나 게임 알림 등이 이에 해당합니다) 에 머물지 않는 한, *반드시* 고유의 전역 구분자를 가져야 합니다. 이러한 구분자들은 아래의 그룹 중 하나에 속합니다.
 
  All Objects in [ActivityStreams] should have unique global identifiers. ActivityPub extends this requirement; all objects distributed by the ActivityPub protocol MUST have unique global identifiers, unless they are intentionally transient (short lived activities that are not intended to be able to be looked up, such as some kinds of chat messages or game notifications). These identifiers must fall into one of the following groups:
+
+1. 출발 서버에 권리\* 가 귀속되는, HTTPS URI 등 공개적으로 디레퍼런스 가능한 URI. (외부에 닿아있는 컨텐츠는 HTTPS URI를 사용 *하여야* 합니다.)
+2. JSON null 객체임이 명시적으로 특정되어 익명의 오브젝트임을 암시하는 ID (부모 컨텍스트의 일부)
+
+\* 원문은 authority
 
 1. Publicly dereferencable URIs, such as HTTPS URIs, with their authority belonging to that of their originating server. (Publicly facing content SHOULD use HTTPS URIs).
 2. An ID explicitly specified as the JSON null object, which implies an anonymous object (a part of its parent context)
 
+서버 - 서버 통신에서 구분자는 액티비티가 의도적으로 일시적인 수준에 한정되지 않는 한, *반드시* 제공되어야 합니다. 그러나, 클라이언트 - 서버 통신에서는, 특정된 id가 없이 아웃박스에 포스트된 오브젝트를 수신한 서버는 *반드시* 오브젝트 ID를 액터의 namespace에 할당하고 포스트된 오브젝트에 첨부해야 합니다.
+
 Identifiers MUST be provided for activities posted in server to server communication, unless the activity is intentionally transient. However, for client to server communication, a server receiving an object posted to the outbox with no specified id SHOULD allocate an object ID in the actor's namespace and attach it to the posted object.
+
+모든 오브젝트는 아래의 값을 가집니다:
+
+**id**
+오브젝트의 고유한 전역 구분자 (오브젝트가 일시적인 경우를 제외하며, 이 경우 id는 비워둘 *수* 있습니다)
+**type**
+오브젝트의 타입
 
 All objects have the following properties:
 
