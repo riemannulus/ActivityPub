@@ -36,33 +36,50 @@
 
 #### 4.1 액터 객체 ~~Actor objects~~
 
-Actor objects *MUST* have, in addition to the properties mandated by [3.1 Object Identifiers](https://www.w3.org/TR/activitypub/#obj-id), the following properties:
+액터 객체들은 *반드시* [3.1 객체 지정자](https://www.w3.org/TR/activitypub/#obj-id)에 정의된 속성들 외에도 다음과 같은 속성들을 지니고 있습니다:
 
-**inbox**
+~~Actor objects *MUST* have, in addition to the properties mandated by [3.1 Object Identifiers](https://www.w3.org/TR/activitypub/#obj-id), the following properties:~~
 
-* A reference to an [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] [`OrderedCollection`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection) comprised of all the messages received by the actor; see [5.2 Inbox](https://www.w3.org/TR/activitypub/#inbox).
+**인박스(inbox)**
+* 액터가 수신한 모든 메세지로 구성되어 있는 [액티비티스트림](https://www.w3.org/TR/activitypub/#bib-ActivityStreams) [`OrderedCollection`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection)에 대한 참조; [5.2 인박스](https://www.w3.org/TR/activitypub/#inbox) 참고바람.
 
-**outbox**
+**아웃박스(outbox)**
+* 액터가 생성한 모든 메세지로 구성되어 있는 [액티비티스트림](https://www.w3.org/TR/activitypub/#bib-ActivityStreams) [`OrderedCollection`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection)에 대한 참조; [5.1 아웃박스](https://www.w3.org/TR/activitypub/#outbox) 참고바람.
 
-* An [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] [`OrderedCollection`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection) comprised of all the messages produced by the actor; see [5.1 Outbox](https://www.w3.org/TR/activitypub/#outbox).
+~~**inbox**~~
+~~* A reference to an [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] [`OrderedCollection`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection) comprised of all the messages received by the actor; see [5.2 Inbox](https://www.w3.org/TR/activitypub/#inbox).~~
 
-Implementations *SHOULD*, in addition, provide the following properties:
+~~**outbox**~~
+~~* An [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] [`OrderedCollection`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection) comprised of all the messages produced by the actor; see [5.1 Outbox](https://www.w3.org/TR/activitypub/#outbox).~~
 
-**following**
+구현체는 다음과 같은 속성들을 제공하는것이 *권장됩니다*:
 
-* A link to an [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] collection of the actors that this actor is following; see [5.4 Following Collection](https://www.w3.org/TR/activitypub/#following)
+~~Implementations *SHOULD*, in addition, provide the following properties:~~
 
-**followers**
+**팔로잉(following)**
+* 주어진 액터가 팔로우 하고 있는 액터들의 [[액티비티스트림](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] 모음에 대한 링크; [5.4 팔로잉 모음](https://www.w3.org/TR/activitypub/#following) 참고바람.
 
-* A link to an [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] collection of the actors that follow this actor; see [5.3 Followers Collection](https://www.w3.org/TR/activitypub/#followers).
+**팔로워(followers)**
+* 주어진 액터를 팔로우 하고 있는 액터들의 [[액티비티스트림](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] 모음에 대한 링크; [5.3 팔로워 모음](https://www.w3.org/TR/activitypub/#followers) 참고바람.
 
-Implementations *MAY* provide the following properties:
+~~**following**~~
+~~* A link to an [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] collection of the actors that this actor is following; see [5.4 Following Collection](https://www.w3.org/TR/activitypub/#following).~~
 
-**liked**
+~~**followers**~~
+~~* A link to an [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] collection of the actors that follow this actor; see [5.3 Followers Collection](https://www.w3.org/TR/activitypub/#followers).~~
 
-* A link to an [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] collection of objects this actor has liked; see [5.5 Liked Collection](https://www.w3.org/TR/activitypub/#liked).
+구현체는 다음과 같은 속성들을 제공 *할 수도* 있습니다:
 
-> Example 9
+~~Implementations *MAY* provide the following properties:~~
+
+**즐겨찾던 모음(liked)**
+* 주어진 액터가 즐겨찾던 [[액티비티스트림](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] 모음에 대한 링크; [5.5 즐겨찾던 모음](https://www.w3.org/TR/activitypub/#liked) 참고바람.
+
+
+~~**liked**~~
+~~* A link to an [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] collection of objects this actor has liked; see [5.5 Liked Collection](https://www.w3.org/TR/activitypub/#liked).~~
+
+> 예시 9
 >
 > ```json
 > {
@@ -84,61 +101,113 @@ Implementations *MAY* provide the following properties:
 > }
 > ```
 
-Implementations *MAY*, in addition, provide the following properties:
+구현체는 다음과 같은 속성들을 추가적으로 제공 *할 수도* 있습니다:
 
-**streams**
+~~Implementations *MAY*, in addition, provide the following properties:~~
 
-* A list of supplementary Collections which may be of interest.
+**스트림(streams)**
+* 관심이 있을법한 부가 컬렉션들의 리스트.
 
-**preferredUsername**
+**선호하는 사용자 이름(preferredUsername)**
+* 유일성이 보장되지 않고, 액터를 지칭하는데 사용될 수 있는 간략한 사용자이름.
 
-* A short username which may be used to refer to the actor, with no uniqueness guarantees.
+**엔드포인트(endpoints)**
+* 주어진 액터 또는 주어진 액터를 참조하는 누군가에게 유용할 수 있는 추가 (일반적으로는 서버/도메인 전체)엔드포인트를 매핑하는 json 객체입니다. 이 매핑은 액터 문서 속에 값이나 이러한 속성을 지닌 JSON-LD 문서에 대한 링크일 수 도 있습니다.
 
-**endpoints**
+~~**streams**~~
+~~* A list of supplementary Collections which may be of interest.~~
 
-* A json object which maps additional (typically server/domain-wide) endpoints which may be useful either for this actor or someone referencing this actor. This mapping may be nested inside the actor document as the value or may be a link to a JSON-LD document with these properties. 
+~~**preferredUsername**~~
+~~* A short username which may be used to refer to the actor, with no uniqueness guarantees.~~
 
-The `endpoints` mapping *MAY* include the following properties:
+~~**endpoints**~~
+~~* A json object which maps additional (typically server/domain-wide) endpoints which may be useful either for this actor or someone referencing this actor. This mapping may be nested inside the actor document as the value or may be a link to a JSON-LD document with these properties.~~
 
-**proxyUrl**
+`endpoints` 매핑은 다음과 같은 속성들을 포함 *할 수도* 있습니다:
 
-* Endpoint URI so this actor's clients may access remote ActivityStreams objects which require authentication to access. To use this endpoint, the client posts an `x-www-form-urlencoded` id parameter with the value being the `id` of the requested ActivityStreams object.
+~~The `endpoints` mapping *MAY* include the following properties:~~
 
-**oauthAuthorizationEndpoint**
+**프록시 Url(proxyUrl)**
+* 주어진 액터의 클라이언트들이 인증이 필요한 원격 액티비티스트림 객체에 접근을 가능하게 하는 엔드포인트 URI. 이 엔드포인트를 사용하려면 클라이언트는 요청된 액티비티스트림 객체의 `id`값을 `x-www-form-urlencoded`를 통하여 전송합니다.
 
-* If OAuth 2.0 bearer tokens [[RFC6749](https://www.w3.org/TR/activitypub/#bib-RFC6749)] [[RFC6750](https://www.w3.org/TR/activitypub/#bib-RFC6750)] are being used for authenticating [client to server interactions](https://www.w3.org/TR/activitypub/#client-to-server-interactions), this endpoint specifies a URI at which a browser-authenticated user may obtain a new authorization grant.
+**oauth 인증 엔드포인트(oauthAuthorizationEndpoint)**
+* 만약 OAuth 2.0 bearer 토큰 [[RFC6749](https://www.w3.org/TR/activitypub/#bib-RFC6749)] [[RFC6750](https://www.w3.org/TR/activitypub/#bib-RFC6750)]을 사용하여 [클라이언트-서버 간 상호작용](https://www.w3.org/TR/activitypub/#client-to-server-interactions)을 인증하는데 사용할 경우, 이 엔드포인트는 브라우저-인증된 사용자가 새 권한을 부여 받을 수 있는 URI를 제공합니다.
 
-**oauthTokenEndpoint**
+**oauth 토큰 엔드포인트(oauthTokenEndpoint)**
+* 만약 OAuth 2.0 bearer 토큰 [[RFC6749](https://www.w3.org/TR/activitypub/#bib-RFC6749)] [[RFC6750](https://www.w3.org/TR/activitypub/#bib-RFC6750)]을 사용하여 [클라이언트-서버 간 상호작용](https://www.w3.org/TR/activitypub/#client-to-server-interactions)을 인증하는데 사용할 경우, 이 엔드포인트는 클라이언트가 새 권한을 부여 받을 수 있는 URI를 제공합니다.
 
-* If OAuth 2.0 bearer tokens [[RFC6749](https://www.w3.org/TR/activitypub/#bib-RFC6749)] [[RFC6750](https://www.w3.org/TR/activitypub/#bib-RFC6750)] are being used for authenticating [client to server interactions](https://www.w3.org/TR/activitypub/#client-to-server-interactions), this endpoint specifies a URI at which a client may acquire an access token.
+**사용자 키 제공(provideClientKey)**
+* 만약 링크된 데이터 서명과 HTTP 서명이 인증 및 권한부여에 사용되는 경우, 이 엔드포인트는 브라우저-인증된 사용자가 [클라이언트-서버 간 상호작용](https://www.w3.org/TR/activitypub/#client-to-server-interactions)에 대한 클라이언트의 공개 키를 승인 할 수 있는 URI를 제공합니다.
 
-**provideClientKey**
+**클라이언트 키 인증(signClientKey)**
+* 만약 링크된 데이터 서명과 HTTP 서명이 인증 및 권한부여에 사용되는 경우, 이 엔드포인트는 클라이언트가 외부 서버와 상호 작용할 때 액터를 대신하여 잠시동안 액터의 키를 사용하여 클라이언트의 키에 서명 할 수 있는 URI를 제공합니다.
 
-* If Linked Data Signatures and HTTP Signatures are being used for authentication and authorization, this endpoint specifies a URI at which browser-authenticated users may authorize a client's public key for [client to server interactions](https://www.w3.org/TR/activitypub/#client-to-server-interactions).
-
-**signClientKey**
-
-* If Linked Data Signatures and HTTP Signatures are being used for authentication and authorization, this endpoint specifies a URI at which a client key may be signed by the actor's key for a time window to act on behalf of the actor in interacting with foreign servers. 
-
-**sharedInbox**
+**공유 인박스(sharedInbox)**
+* 선택적 엔드포인트는 [공개적으로 알려진 액티비티들과 팔로워들에게 전송 된 액티비티들의 광범위한 전달에 사용됩니다](https://www.w3.org/TR/activitypub/#shared-inbox-delivery). `sharedInbox` 엔드포인트들은 [공개(Public)](https://www.w3.org/TR/activitypub/#public-addressing) 특수 컬렉션으로 지정된 객체들을 포함하는, 공개적으로 읽을 수 있는 `OrderedCollection` 객체들이기를 *권장됩니다*. `sharedInbox` 엔드포인트에서 읽어들일 시, `Public` 엔드포인트로 지정되지 않은 객체를 표시해서는 *안 됩니다*.
 
 * An optional endpoint [used for wide delivery of publicly addressed activities and activities sent to followers](https://www.w3.org/TR/activitypub/#shared-inbox-delivery). `sharedInbox` endpoints *SHOULD* also be publicly readable `OrderedCollection` objects containing objects addressed to the [Public](https://www.w3.org/TR/activitypub/#public-addressing) special collection. Reading from the `sharedInbox` endpoint *MUST NOT* present objects which are not addressed to the `Public` endpoint.
 
-> Note
->
-> As the upstream vocabulary for ActivityPub, any applicable [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] property may be used on ActivityPub Actors. Some ActivityStreams properties are particularly worth highlighting to demonstrate how they are used in ActivityPub implementations.
->**url**
->A link to the actor's "profile web page", if not equal to the value of `id`.
->
->**name**
->The preferred "nickname" or "display name" of the actor.
->
->**summary**
->A quick summary or bio by the user about themselves.
->
->**icon**
->A link to an image or an Image object which represents the user's profile picture (this may be a thumbnail).
+[//]: # "'Browser-authenticated'를 브라우저-인증으로 번역해 두었습니다."
+[//]: # "'Specify'를 '지정합니다'가 아닌 '제공합니다'로 번역해 두었습니다."
+[//]: # "'provideClientKey'에서 'Linked Data Signatures'를 '링크된 데이터 서명'으로 번역해 두었습니다."
+[//]: # "'signClientKey'에서 'time window'를 '잠시동안'으로 번역해 두었습니다. '일정 구간', '일정 시간'이나 다른 번역이 올바를수도 있으므로 차후에 검토해보겠습니다.(TODO)"
+[//]: # "'sharedInbox'에서 'SHOULD'를 Chapter2의 RFC2119 해석 (MAY/MUST/...) 표준에 맞추기 위하여 '권장됩니다' 로 해석하였으나 부자연스러운 감이 있는 것 같습니다. '...객체들 이여야 합니다' 같이 자연스러운 해석이 옳은 것인지는 차후에 검토해 보겠습니다.(TODO)"
 
-> Note
+~~**proxyUrl**~~
+~~* Endpoint URI so this actor's clients may access remote ActivityStreams objects which require authentication to access. To use this endpoint, the client posts an `x-www-form-urlencoded` id parameter with the value being the `id` of the requested ActivityStreams object.~~
+
+~~**oauthAuthorizationEndpoint**~~
+~~* If OAuth 2.0 bearer tokens [[RFC6749](https://www.w3.org/TR/activitypub/#bib-RFC6749)] [[RFC6750](https://www.w3.org/TR/activitypub/#bib-RFC6750)] are being used for authenticating [client to server interactions](https://www.w3.org/TR/activitypub/#client-to-server-interactions), this endpoint specifies a URI at which a browser-authenticated user may obtain a new authorization grant.~~
+
+~~**oauthTokenEndpoint**~~
+~~* If OAuth 2.0 bearer tokens [[RFC6749](https://www.w3.org/TR/activitypub/#bib-RFC6749)] [[RFC6750](https://www.w3.org/TR/activitypub/#bib-RFC6750)] are being used for authenticating [client to server interactions](https://www.w3.org/TR/activitypub/#client-to-server-interactions), this endpoint specifies a URI at which a client may acquire an access token.~~
+
+~~**provideClientKey**~~
+~~* If Linked Data Signatures and HTTP Signatures are being used for authentication and authorization, this endpoint specifies a URI at which browser-authenticated users may authorize a client's public key for [client to server interactions](https://www.w3.org/TR/activitypub/#client-to-server-interactions).~~
+
+~~**signClientKey**~~
+~~* If Linked Data Signatures and HTTP Signatures are being used for authentication and authorization, this endpoint specifies a URI at which a client key may be signed by the actor's key for a time window to act on behalf of the actor in interacting with foreign servers.~~
+
+~~**sharedInbox**~~
+~~* An optional endpoint [used for wide delivery of publicly addressed activities and activities sent to followers](https://www.w3.org/TR/activitypub/#shared-inbox-delivery). `sharedInbox` endpoints *SHOULD* also be publicly readable `OrderedCollection` objects containing objects addressed to the [Public](https://www.w3.org/TR/activitypub/#public-addressing) special collection. Reading from the `sharedInbox` endpoint *MUST NOT* present objects which are not addressed to the `Public` endpoint.~~
+
+>참고
 >
-> Properties containing natural language values, such as `name`, `preferredUsername`, or `summary`, make use of [natural language support defined in ActivityStreams](https://www.w3.org/TR/activitystreams-core/#naturalLanguageValues).
+>액티비티스트림의 업스트림(upstream) 어휘로써, 어떠한 [[액티비티스트림](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] 속성은 액티비티펍 액터로도 사용될 수 있습니다. 일부 액티비티스트림 속성들은 액티비티펍을 구현하는데 사용되는 것을 설명할 때 특히 강조할 가치가 있습니다.
+>
+>**url**
+>- `id`값과 일치하지 않은 경우, 주어진 액터의 "프로필 웹 페이지".
+>
+>**이름(name)**
+>- 주어진 액터의 선호하는 "닉네임" 또는 "표기 이름".
+>
+>**요약(summary)**
+>- 주어진 유저에 대한 간략한 요약 또는 자기소개.
+>
+>**아이콘(icon)**
+>- 주어진 유저의 (썸네일 일 수도 있는) 프로필 사진을 나타내는 이미지 객체 또는 이미지에 대한 링크.
+
+
+~~Note~~
+
+~~As the upstream vocabulary for ActivityPub, any applicable [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] property may be used on ActivityPub Actors. Some ActivityStreams properties are particularly worth highlighting to demonstrate how they are used in ActivityPub implementations.~~
+
+~~**url**~~
+~~A link to the actor's "profile web page", if not equal to the value of `id`.~~
+
+~~**name**~`
+~~The preferred "nickname" or "display name" of the actor.~~
+
+~~**summary**~~
+~~A quick summary or bio by the user about themselves.~~
+
+~~**icon**~~
+~~A link to an image or an Image object which represents the user's profile picture (this may be a thumbnail).~~
+
+>참고
+>
+>`name`, `preferredUserName`, 또는 `summary`와 같은 자연어 값을 포함하는 속성에 대해서는 [액티비티스트림에 정의 되어있는 자연어 지원](https://www.w3.org/TR/activitystreams-core/#naturalLanguageValues)을 사용하여 주시길 바랍니다.
+
+~~Note~~
+
+~~Properties containing natural language values, such as `name`, `preferredUsername`, or `summary`, make use of [natural language support defined in ActivityStreams](https://www.w3.org/TR/activitystreams-core/#naturalLanguageValues).~~
