@@ -65,11 +65,15 @@
 
 #### 개요 ~~Abstract~~
 
-액티비티펍 프로토콜은 [액티비티스트림](https://www.w3.org/TR/activitypub/#bib-ActivityStreams) 2.0 데이터 형식을 기반으로 하는 분산 소셜 네트워킹 프로토콜입니다. 컨텐츠 생성, 갱신, 삭제를 위한 클라이언트-서버 간 API를 제공하며, 알림 및 컨텐츠 전달을 위한 연합서버-서버 간 API도 제공합니다.
+액티비티펍(ActivityPub) 프로토콜은 [액티비티스트림(ActivityStreams)](https://www.w3.org/TR/activitypub/#bib-ActivityStreams) 2.0 데이터 형식을 기반으로 하는 분산 소셜 네트워킹 프로토콜입니다. 컨텐츠 생성, 갱신, 삭제를 위한 클라이언트-서버 간 API를 제공하며, ‘연합’으로 이루어진 서버-서버 간의 알림과 컨텐츠 전달을 위한 API도 제공합니다.
 
 ~~The ActivityPub protocol is a decentralized social networking protocol based upon the [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] 2.0 data format. It provides a client to server API for creating, updating and deleting content, as well as a federated server to server API for delivering notifications and content.~~
 
 [//]: # "'Client to Server'를 '클라이언트와 서버간' 으로 번역하였듯 단방향이 아닌 양방향으로 해석될 여지가 있으나 이를 의도하는게 맞다고 판단되어 A와B간(사이)로 번역하였습니다. 차후 챕터 번역시 해당 내용이 오류였다고 생각이 들 경우 수정하겠습니다(TODO)"
+
+[//]: # "해당 내용은 사전에 작성되어있던 ActivityPub Chapter1의 번역되어 있던 Intro부분을 참조하였습니다. 일단 해당 번역과 차이나는 부분은: {탈중앙화->분산, CRUD->생성/갱신/삭제} 정도인 것 같습니다. (TODO)"
+
+[//]: # "원문중 'federated server to server' 부분을 '[연합]으로 이루어진 서버-서버간' 으로 번역하거나 '연합서버-서버 간' 으로 번역할 수 있는 선택지에서 일단은 전자를 택하겠습니다. 차후에 의미 전달이 명확하지 않았다 판단될 경우에는 수정하겠습니다. (TODO)"
 
 #### 이 문서의 상태 ~~Status of This Document~~
 

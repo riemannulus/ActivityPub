@@ -56,11 +56,11 @@
 
 **팔로잉(following)**
 
-* 주어진 액터가 팔로우 하고 있는 액터들의 [[액티비티스트림](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] 모음에 대한 링크; [5.4 팔로잉 모음](https://www.w3.org/TR/activitypub/#following) 참고바람.
+* 주어진 액터가 팔로우 하고 있는 액터들의 [[액티비티스트림](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] 에 대한 링크; [5.4 팔로잉 ](https://www.w3.org/TR/activitypub/#following) 참고바람.
 
 **팔로워(followers)**
 
-* 주어진 액터를 팔로우 하고 있는 액터들의 [[액티비티스트림](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] 모음에 대한 링크; [5.3 팔로워 모음](https://www.w3.org/TR/activitypub/#followers) 참고바람.
+* 주어진 액터를 팔로우 하고 있는 액터들의 [[액티비티스트림](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] 에 대한 링크; [5.3 팔로워 ](https://www.w3.org/TR/activitypub/#followers) 참고바람.
 
 ~~**following**~~
 ~~* A link to an [[ActivityStreams](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] collection of the actors that this actor is following; see [5.4 Following Collection](https://www.w3.org/TR/activitypub/#following).~~
@@ -72,9 +72,9 @@
 
 ~~Implementations *MAY* provide the following properties:~~
 
-**즐겨찾던 모음(liked)**
+**좋아하는 (liked)**
 
-* 주어진 액터가 즐겨찾던 [[액티비티스트림](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] 모음에 대한 링크; [5.5 즐겨찾던 모음](https://www.w3.org/TR/activitypub/#liked) 참고바람.
+* 주어진 액터가 좋아하는 [[액티비티스트림](https://www.w3.org/TR/activitypub/#bib-ActivityStreams)] 에 대한 링크; [5.5 좋아하는 ](https://www.w3.org/TR/activitypub/#liked) 참고바람.
 
 
 ~~**liked**~~
@@ -126,8 +126,6 @@
 
 ~~**endpoints**~~
 ~~* A json object which maps additional (typically server/domain-wide) endpoints which may be useful either for this actor or someone referencing this actor. This mapping may be nested inside the actor document as the value or may be a link to a JSON-LD document with these properties.~~
-
-[//]: # "'streams' 에서 'Collection'은 '모음' 보다는 Chapter5의 'Collections'를 지정하는 것으로 판단되어 '모음'이 아닌 음차 그대로 '컬렉션' 이라고 번역하였습니다."
 
 `endpoints` 매핑은 다음과 같은 속성들을 포함 *할 수도* 있습니다:
 
