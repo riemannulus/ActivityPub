@@ -49,7 +49,7 @@ it should dereference the `id` both to ensure that it exists and is a valid obje
 
 [액티비티스트림]의 모든 오브젝트는 고유의 전역구분자를 가져야 합니다. 액티비티펍은 이 제한의 연장선에 있습니다; 액티비티펍 프로토콜에 의해 배포되는 모든 오브젝트들은, 의도적으로 일시적인 수준(접근되도록 의도되지 않은 단기 활동들로 챗 메세지나 게임 알림 등이 이에 해당합니다) 에 머물지 않는 한, *반드시* 고유의 전역 구분자를 가져야 합니다. 이러한 구분자들은 아래의 그룹 중 하나에 속합니다.
 
- All Objects in [ActivityStreams] should have unique global identifiers. ActivityPub extends this requirement; all objects distributed by the ActivityPub protocol MUST have unique global identifiers, unless they are intentionally transient (short lived activities that are not intended to be able to be looked up, such as some kinds of chat messages or game notifications). These identifiers must fall into one of the following groups:
+~~All Objects in [ActivityStreams] should have unique global identifiers. ActivityPub extends this requirement; all objects distributed by the ActivityPub protocol MUST have unique global identifiers, unless they are intentionally transient (short lived activities that are not intended to be able to be looked up, such as some kinds of chat messages or game notifications). These identifiers must fall into one of the following groups:~~
 
 1. 출발 서버에 권리\* 가 귀속되는, HTTPS URI 등 공개적으로 디레퍼런스 가능한 URI. (외부에 닿아있는 컨텐츠는 HTTPS URI를 사용 *하여야* 합니다.)
 2. JSON null 객체임이 명시적으로 특정되어 익명의 오브젝트임을 암시하는 ID (부모 컨텍스트의 일부)
