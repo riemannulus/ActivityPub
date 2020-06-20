@@ -15,8 +15,9 @@ W3C 번역 현황:
 
 ## 목차
 - [ActivityPub](ActivityPubContents.md)
+- [번역 가이드라인](translation-guideline-ko.md)
 
-## 번역에 도움 주신 분들
+## 번역에 도움을 주신 분들
 - [@riemannulus](https://github.com/riemannulus)
 - [@malkoG](https://github.com/malkoG)
 - [@Canorus](https://github.com/Canorus)

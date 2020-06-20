@@ -1,10 +1,10 @@
 [목차로 돌아가기](ActivityPubContents.md)
 
-## D. 참고 문헌(References)
+## D. 참고 문헌 (References)
 
-### D.1 규정 참고 문헌(Normative references)
+### D.1 규정 참고 문헌 (Normative references)
 
-[액티비티-단어(Activity-Vocabulary)]
+[액티비티-어휘(Activity-Vocabulary)]
 
 * [Activity Vocabulary](https://www.w3.org/TR/activitystreams-vocabulary/). J. Snell. ActivityStreams Working Group. Editors Draft. URL: https://www.w3.org/TR/activitystreams-vocabulary/ 
 
@@ -32,7 +32,7 @@
 
 * [Hypertext Transfer Protocol (HTTP/1.1): Caching](https://tools.ietf.org/html/rfc7234). R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. IETF. June 2014. Proposed Standard. URL: https://tools.ietf.org/html/rfc7234 
 
-### D.2 정보 참고 문헌(Informative references)
+### D.2 정보 참고 문헌 (Informative references)
 
 [마이크로펍(Micropub)]
 
